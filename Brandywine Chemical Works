@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brandywine Chemical Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050814;
+      --card: #0d1224;
+      --accent: #3ea6ff;
+      --accent-soft: rgba(62,166,255,0.15);
+      --text: #f5f7ff;
+      --muted: #a4acc7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #101735 0, #050814 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .pill {
+      border-radius: 999px;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw + 1rem, 3.1rem);
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .hero-title span {
+      color: var(--accent);
+    }
+    .hero-sub {
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 0.85rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #7bd5ff);
+      color: #02040a;
+      font-weight: 600;
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.08);
+      color: var(--muted);
+    }
+    .hero-card {
+      background: radial-gradient(circle at top left, #1b2648 0, #0b1020 55%);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card h2 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .hero-card-main {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+    .hero-card-pill {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .metric {
+      background: rgba(0,0,0,0.25);
+      border-radius: 12px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.7rem;
+      margin-bottom: 2px;
+    }
+    .metric-value {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    section {
+      margin-top: 32px;
+    }
+    .section-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .section-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .section-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+    .section-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 800px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    ul {
+      margin-top: 6px;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    li { margin-bottom: 4px; }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 26px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 30px;
+      padding-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">BRANDYWINE CHEMICAL WORKS</div>
+    <div class="pill">Specialty Intermediates · Wilmington, DE</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="badge">Specialty chemical intermediates</div>
+        <h1 class="hero-title">
+          Building reliable <span>sourcing</span> and <span>toll-enabled</span> supply for advanced materials.
+        </h1>
+        <p class="hero-sub">
+          Brandywine Chemical Works focuses on high‑value intermediates and streamlined supply for industrial and advanced‑materials customers.
+          We combine engineering discipline with lean operations to make sourcing and scale‑up more predictable.
+        </p>
+        <div class="hero-tags">
+          <div class="tag">Specialty intermediates</div>
+          <div class="tag">Toll manufacturing</div>
+          <div class="tag">Supply development</div>
+        </div>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Contact us</a>
+          <a href="#internships" class="btn btn-ghost">View internships</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h2>Snapshot</h2>
+        <div class="hero-card-main">
+          Early‑stage, engineering‑driven specialty chemical company based in Wilmington, DE.
+        </div>
+        <div class="hero-card-pill">
+          Focused on intermediates, toll partnerships, and clear, reliable supply for niche applications.
+        </div>
+        <div class="hero-metrics">
+          <div class="metric">
+            <div class="metric-label">Core focus</div>
+            <div class="metric-value">Specialty intermediates</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Model</div>
+            <div class="metric-value">Toll‑enabled supply</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Location</div>
+            <div class="metric-value">Wilmington, DE</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Stage</div>
+            <div class="metric-value">Early, focused, lean</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="section-title">Who we are</div>
+      <div class="section-card">
+        <h3>Engineering‑driven specialty chemical supply</h3>
+        <p>
+          We’re a specialty chemical company focused on sourcing and developing high‑value intermediates for advanced materials and industrial
+          applications. Our work centers on reliability, technical clarity, and building streamlined supply solutions for customers who need
+          consistent performance rather than commodity volume.
+        </p>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-title">What we focus on</div>
+      <div class="grid-2">
+        <div class="section-card">
+          <h3>Intermediates & sourcing</h3>
+          <p>
+            We identify, qualify, and support supply for specialty intermediates where reliability, documentation, and technical alignment matter.
+          </p>
+          <ul>
+            <li>Targeted sourcing for niche and high‑value intermediates</li>
+            <li>Supplier and route benchmarking</li>
+            <li>Documentation and basic QC expectations</li>
+          </ul>
+        </div>
+        <div class="section-card">
+          <h3>Toll‑enabled supply paths</h3>
+          <p>
+            We work toward toll‑manufacturing and contract‑production routes that balance flexibility, risk, and scale for specialty portfolios.
+          </p>
+          <ul>
+            <li>Early toll and contract‑manufacturing exploration</li>
+            <li>Volume and risk‑aligned supply structures</li>
+            <li>Support for technical and commercial scoping</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="internships">
+      <div class="section-title">Internships</div>
+      <div class="grid-2">
+        <div class="section-card">
+          <h3>Software Engineering Intern</h3>
+          <p>
+            Help design, build, and deploy our company website and lightweight internal tools. You’ll work on real code that shapes how we present
+            ourselves and operate.
+          </p>
+          <ul>
+            <li>0–2 years experience (projects and coursework welcome)</li>
+            <li>HTML, CSS, JavaScript; basic web deployment</li>
+            <li>Independent, fast‑learning, and comfortable shipping</li>
+          </ul>
+        </div>
+        <div class="section-card">
+          <h3>Business Operations Research Intern</h3>
+          <p>
+            Support market, supplier, and toll‑manufacturing research across specialty intermediates and industrial supply chains.
+          </p>
+          <ul>
+            <li>0–2 years in research, analysis, or operations</li>
+            <li>Studying engineering, business, economics, industrial, or related fields</li>
+            <li>Strong analytical skills and clear written summaries</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">Contact</div>
+      <div class="section-card">
+        <h3>Get in touch</h3>
+        <p>
+          For sourcing discussions, toll‑manufacturing conversations, or internship interest, reach out and we’ll follow up with clear next steps.
+        </p>
+        <div class="contact">
+          <div><strong>Email:</strong> <a href="mailto:info@brandywinechem.com">info@brandywinechem.com</a></div>
+          <div><strong>Location:</strong> Wilmington, Delaware (Hybrid / Remote‑friendly)</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Brandywine Chemical Works LLC</div>
+    <div>Specialty intermediates · Toll‑enabled supply · Wilmington, DE</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
