@@ -1,1 +1,6 @@
+<header>
+  <img src="logo.png" alt="Brandywine Chemical Works Logo" style="height: 48px; margin-right: 12px;" />
+  <div class="logo">BRANDYWINE CHEMICAL WORKS</div>
+  <div class="pill">Specialty Intermediates · Wilmington, DE</div>
+</header>
 
